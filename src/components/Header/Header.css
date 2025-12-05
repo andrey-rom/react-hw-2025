@@ -1,0 +1,143 @@
+.header {
+  background-color: #ffffff;
+  border-bottom: 1px solid #f3f4f6;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.header-container {
+  margin: 0 auto;
+
+  padding: 22px 120px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.logo-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.logo-icon {
+  width: 2rem;
+  height: 2rem;
+  background-color: #14b8a6;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-text {
+  color: #111827;
+  font-weight: 600;
+  font-size: 1.125rem;
+}
+
+.nav {
+  display: none;
+  align-items: center;
+  gap: 2rem;
+  padding-right: 5rem;
+}
+
+@media (min-width: 768px) {
+  .nav {
+    display: flex;
+  }
+}
+
+.nav-link {
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #111827;
+  transition: color 0.2s;
+}
+
+.nav-link.active {
+  color: #14b8a6;
+}
+
+.nav-link:hover {
+  color: #111827;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.icon-button {
+  padding: 0.5rem;
+  background: none;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #111827;
+}
+
+.icon-button:hover {
+  background-color: #f9fafb;
+}
+
+@media (max-width: 640px) {
+  .icon-button.hidden-sm {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .icon-button.hidden-md {
+    display: none;
+  }
+}
+
+.button {
+  position: relative;
+  background-color: #14b8a6;
+  color: #ffffff;
+  padding: 1rem 1rem;
+  border: none;
+  border-radius: 0.25rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  width: 55px;
+  height: 55px;
+}
+
+.button:hover {
+  background-color: #0d9488;
+}
+
+.cart-badge {
+  position: absolute;
+  background-color: #ffffff;
+  color: black;
+  border-radius: 50%;
+  width: 1rem;
+  height: 1rem;
+  padding: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  top: -0.5rem;
+  right: -0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
