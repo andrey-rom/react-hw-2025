@@ -1,8 +1,9 @@
-import "./Footer.css";
 import Instagram from "../../assets/instagram.svg";
 import Twitter from "../../assets/twitter.svg";
 import Youtube from "../../assets/youtube.svg";
 import Logo from "../../assets/Logo.svg";
+
+import "./Footer.css";
 
 export default function Footer() {
   return (
@@ -23,9 +24,7 @@ export default function Footer() {
             <ul className="footer-links">
               {["Home", "Order", "FAQ", "Contact"].map((item) => (
                 <li key={item}>
-                  <a href="#" className="footer-link">
-                    {item}
-                  </a>
+                  <a className="footer-link">{item}</a>
                 </li>
               ))}
             </ul>
@@ -41,7 +40,7 @@ export default function Footer() {
                 "Webflow University",
               ].map((item) => (
                 <li key={item}>
-                  <a href="#" className="footer-link">
+                  <a href="https://google.com" className="footer-link">
                     {item}
                   </a>
                 </li>
@@ -51,16 +50,13 @@ export default function Footer() {
 
           <div className="footer-section">
             <h3 className="footer-title">Flowbase</h3>
-            <a href="#" className="footer-link">
-              More Cloneables
-            </a>
+            <a className="footer-link">More Cloneables</a>
           </div>
         </div>
 
         <div className="footer-bottom">
           <p className="footer-credit">
-            Built by <a href="#">Flowbase</a> · Powered by{" "}
-            <a href="#">Webflow</a>
+            Built by <a>Flowbase</a> · Powered by <a>Webflow</a>
           </p>
 
           <div className="social-links">
