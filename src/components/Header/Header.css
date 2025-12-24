@@ -125,6 +125,18 @@
   background-color: #0d9488;
 }
 
+.cart {
+  width: 24px;
+  height: 24px;
+  background-color: #14b8a6;
+  border-radius: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  position: relative;
+}
+
 .cart-badge {
   position: absolute;
   background-color: #ffffff;

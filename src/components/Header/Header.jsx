@@ -1,8 +1,8 @@
-import { useState, useRef, useContext } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
-import { CartContext } from "../CartContext/CartContext.jsx";
-import { useAuth } from "../AuthContext/AuthContext.jsx";
-import CartPopover from "../CartPopover/CartPopover.jsx";
+import { signOut } from "firebase/auth";
+import { auth } from "../../firebase/config";
+import { useAppDispatch, useAppSelector } from "../../store/hooks";
+import { logout } from "../../store/slices/authSlice";
 import Logo from "../../assets/Logo.svg";
 import Cart from "../../assets/ShoppingCart.svg";
 import Phone from "../../assets/phone.svg";
@@ -12,25 +12,16 @@ import "./Header.css";
 export default function Header() {
   const navigate = useNavigate();
   const location = useLocation();
-  const { currentUser, logout } = useAuth();
-  const cartContext = useContext(CartContext);
-  const cart = cartContext?.cart || [];
-  const [isCartOpen, setIsCartOpen] = useState(false);
-  const cartButtonRef = useRef(null);
+  const dispatch = useAppDispatch();
+  const { currentUser } = useAppSelector((state) => state.auth);
+  const cart = useAppSelector((state) => state.cart.items);
 
   const totalItems = cart.reduce((acc, item) => acc + item.count, 0);
 
-  const toggleCart = () => {
-    setIsCartOpen(!isCartOpen);
-  };
-
-  const closeCart = () => {
-    setIsCartOpen(false);
-  };
-
   const handleLogout = async () => {
     try {
-      await logout();
+      await signOut(auth);
+      dispatch(logout());
       navigate("/");
     } catch (error) {
       console.error("Failed to log out:", error);
@@ -88,25 +79,17 @@ export default function Header() {
           </button>
 
           {currentUser && (
-            <button
-              ref={cartButtonRef}
-              className="button"
-              onClick={toggleCart}
+            <Link
+              to="/order"
+              className="cart"
               aria-label="Shopping cart"
             >
               <img src={Cart} alt="cart" />
-              <span className="cart-badge">{totalItems}</span>
-            </button>
+              {totalItems > 0 && <span className="cart-badge">{totalItems}</span>}
+            </Link>
           )}
         </div>
       </div>
-      {currentUser && (
-        <CartPopover
-          isOpen={isCartOpen}
-          onClose={closeCart}
-          triggerRef={cartButtonRef}
-        />
-      )}
     </header>
   );
 }

@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { useCart } from "../CartContext/CartContext.jsx";
+import { useAppDispatch } from "../../store/hooks";
+import { addToCart } from "../../store/slices/cartSlice";
 import MenuCard from "../MenuCard/MenuCard.jsx";
 import useFetch from "../../hooks/useFetch.js";
 
@@ -11,6 +12,7 @@ const DEFAULT_LIMIT = 6;
 const Menu = () => {
   const [limit, setLimit] = useState(DEFAULT_LIMIT);
   const [category, setCategory] = useState("dessert");
+  const dispatch = useAppDispatch();
 
   const { data, error, loading } = useFetch(API_URL + (category ? `?category=${category}` : ""));
   const handleLoadMore = () => {
@@ -21,7 +23,9 @@ const Menu = () => {
     setCategory(e.target.name);
   };
 
-  const { addToCart } = useCart();
+  const handleAddToCart = (item, count) => {
+    dispatch(addToCart({ item, count }));
+  };
 
   const isAddMoreButtonVisible = data?.length > limit;
 
@@ -63,7 +67,7 @@ const Menu = () => {
       </div>
       <div className="menu-dishes">
         {data?.slice(0, limit).map((dish) => (
-          <MenuCard key={dish.id} dish={dish} onAddToCart={addToCart} />
+          <MenuCard key={dish.id} dish={dish} onAddToCart={handleAddToCart} />
         ))}
       </div>
       {isAddMoreButtonVisible && (

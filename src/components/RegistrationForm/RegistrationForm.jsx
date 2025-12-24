@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { useAuth } from '../AuthContext/AuthContext';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../../firebase/config';
+import { useAppDispatch } from '../../store/hooks';
+import { setCurrentUser, setError } from '../../store/slices/authSlice';
 import './RegistrationForm.css';
 
 const RegistrationForm = () => {
@@ -8,7 +11,7 @@ const RegistrationForm = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const { signup } = useAuth();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -17,10 +20,13 @@ const RegistrationForm = () => {
     try {
       setError('');
       setLoading(true);
-      await signup(email, password);
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      dispatch(setCurrentUser(userCredential.user));
       navigate('/menu');
     } catch (err) {
-      setError('Failed to create account: ' + err.message);
+      const errorMessage = 'Failed to create account: ' + err.message;
+      setError(errorMessage);
+      dispatch(setError(errorMessage));
     } finally {
       setLoading(false);
     }
