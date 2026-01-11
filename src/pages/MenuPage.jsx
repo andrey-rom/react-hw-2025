@@ -1,14 +1,11 @@
-import Header from "../components/Header/Header.jsx";
-import Footer from "../components/Footer/Footer.jsx";
+import PageLayout from "../components/PageLayout/PageLayout.jsx";
 import Menu from "../components/Menu/Menu.jsx";
 
 const MenuPage = () => {
   return (
-    <div>
-      <Header />
+    <PageLayout showHeader={true} showMainInfo={false} showFooter={true}>
       <Menu />
-      <Footer />
-    </div>
+    </PageLayout>
   );
 };
 

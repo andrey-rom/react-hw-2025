@@ -59,8 +59,7 @@ export default function Header() {
             {currentUser ? (
               <button 
                 onClick={handleLogout}
-                className="nav-link"
-                style={{ background: 'none', border: 'none', cursor: 'pointer', fontFamily: 'inherit', fontSize: '14px' }}
+                className="nav-link-button"
               >
                 Logout
               </button>
@@ -73,11 +72,6 @@ export default function Header() {
               </Link>
             )}
           </nav>
-
-          <button className="button">
-            <img src={Phone} title="Phone number" alt="phone" />
-          </button>
-
           {currentUser && (
             <Link
               to="/order"

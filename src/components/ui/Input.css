@@ -1,0 +1,32 @@
+.ui-input {
+  padding: 12px;
+  border: 1px solid #f3f4f6;
+  border-radius: 4px;
+  font-size: 16px;
+  font-family: inherit;
+  transition: border-color 0.2s;
+  background-color: #ffffff;
+  color: #111827;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.ui-input:focus {
+  outline: none;
+  border-color: #14b8a6;
+}
+
+.ui-input:hover {
+  border-color: #e5e7eb;
+}
+
+.ui-input:disabled {
+  background-color: #f9fafb;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.ui-input::placeholder {
+  color: #9ca3af;
+}
+

@@ -1,8 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { removeFromCart, clearCart } from '../store/slices/cartSlice';
-import Header from "../components/Header/Header.jsx";
-import Footer from "../components/Footer/Footer.jsx";
+import PageLayout from "../components/PageLayout/PageLayout.jsx";
+import './OrderPage.css';
 
 const OrderPage = () => {
   const dispatch = useAppDispatch();
@@ -15,87 +15,54 @@ const OrderPage = () => {
   }, 0);
 
   return (
-    <div>
-      <Header />
-      <div style={{ padding: '2rem', maxWidth: '1200px', margin: '0 auto' }}>
-        <h1 style={{ marginBottom: '2rem' }}>Your Order</h1>
+    <PageLayout showHeader={true} showMainInfo={false} showFooter={true}>
+      <div className="order-page-container">
+        <h1 className="order-page-title">Your Order</h1>
         {cart.length === 0 ? (
-          <div style={{ textAlign: 'center', padding: '3rem' }}>
-            <p style={{ fontSize: '1.2rem', color: '#6b7280' }}>Your cart is empty</p>
+          <div className="order-empty-container">
+            <p className="order-empty-text">Your cart is empty</p>
             <button
               onClick={() => navigate('/menu')}
-              style={{
-                marginTop: '1rem',
-                padding: '12px 24px',
-                backgroundColor: '#14b8a6',
-                color: '#ffffff',
-                border: 'none',
-                borderRadius: '4px',
-                cursor: 'pointer',
-                fontSize: '16px',
-              }}
+              className="browse-menu-button"
             >
               Browse Menu
             </button>
           </div>
         ) : (
           <div>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
+            <div className="cart-header">
               <h2>Cart Items</h2>
               {cart.length > 0 && (
                 <button
                   onClick={() => dispatch(clearCart())}
-                  style={{
-                    padding: '8px 16px',
-                    backgroundColor: '#ef4444',
-                    color: '#ffffff',
-                    border: 'none',
-                    borderRadius: '4px',
-                    cursor: 'pointer',
-                  }}
+                  className="clear-cart-button"
                 >
                   Clear Cart
                 </button>
               )}
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '2rem' }}>
+            <div className="cart-items-list">
               {cart.map((item) => (
                 <div
                   key={item.id}
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    padding: '1rem',
-                    border: '1px solid #e5e7eb',
-                    borderRadius: '8px',
-                    backgroundColor: '#ffffff',
-                  }}
+                  className="cart-item"
                 >
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flex: 1 }}>
+                  <div className="cart-item-content">
                     <img
                       src={item.img}
                       alt={item.meal}
-                      style={{ width: '80px', height: '80px', objectFit: 'cover', borderRadius: '4px' }}
+                      className="cart-item-image"
                     />
-                    <div>
-                      <p style={{ fontWeight: '600', marginBottom: '0.5rem' }}>{item.meal}</p>
-                      <p style={{ color: '#6b7280' }}>
+                    <div className="cart-item-details">
+                      <p className="cart-item-name">{item.meal}</p>
+                      <p className="cart-item-price">
                         ${parseFloat(item.price || 0).toFixed(2)} × {item.count}
                       </p>
                     </div>
                   </div>
                   <button
                     onClick={() => dispatch(removeFromCart(item.id))}
-                    style={{
-                      padding: '8px 12px',
-                      backgroundColor: '#ef4444',
-                      color: '#ffffff',
-                      border: 'none',
-                      borderRadius: '4px',
-                      cursor: 'pointer',
-                      fontSize: '18px',
-                    }}
+                    className="remove-item-button"
                     aria-label="Remove item"
                   >
                     ×
@@ -103,37 +70,19 @@ const OrderPage = () => {
                 </div>
               ))}
             </div>
-            <div style={{
-              padding: '1.5rem',
-              backgroundColor: '#f9fafb',
-              borderRadius: '8px',
-              border: '1px solid #e5e7eb',
-            }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
-                <span style={{ fontSize: '1.2rem', fontWeight: '600' }}>Total:</span>
-                <span style={{ fontSize: '1.2rem', fontWeight: '600' }}>${totalPrice.toFixed(2)} USD</span>
+            <div className="order-summary">
+              <div className="order-summary-header">
+                <span className="order-summary-total">Total:</span>
+                <span className="order-summary-total">${totalPrice.toFixed(2)} USD</span>
               </div>
-              <button
-                style={{
-                  width: '100%',
-                  padding: '12px',
-                  backgroundColor: '#14b8a6',
-                  color: '#ffffff',
-                  border: 'none',
-                  borderRadius: '4px',
-                  fontSize: '16px',
-                  fontWeight: '500',
-                  cursor: 'pointer',
-                }}
-              >
+              <button className="checkout-button">
                 Checkout
               </button>
             </div>
           </div>
         )}
       </div>
-      <Footer />
-    </div>
+    </PageLayout>
   );
 };
 

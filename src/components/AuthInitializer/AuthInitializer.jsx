@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useAppDispatch } from '../../store/hooks';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../../firebase/config';
 import { setCurrentUser, setLoading } from '../../store/slices/authSlice';
 
 const AuthInitializer = ({ children }) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
