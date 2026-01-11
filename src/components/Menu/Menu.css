@@ -1,0 +1,56 @@
+.menu {
+  padding: 140px 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-weight: 400;
+}
+
+.menu-title {
+  font-size: 50px;
+  font-weight: 400;
+  color: #35b8be;
+  padding-bottom: 26px;
+}
+
+.menu-description {
+  font-size: 16px;
+  color: #546285;
+  padding-bottom: 50px;
+}
+
+.menu-buttons {
+  display: flex;
+  gap: 10px;
+  padding-bottom: 50px;
+}
+
+.menu-button {
+  min-width: 132px;
+  height: 48px;
+  border-radius: 6px;
+  padding: 16px 40px;
+  font-size: 16px;
+  background-color: #ffffff;
+  border: 1px solid #61728333;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.menu-button:hover {
+  background-color: #35b8be;
+  color: #ffffff;
+}
+
+.menu-button-active {
+  background-color: #35b8be;
+  color: #ffffff;
+}
+
+.menu-dishes {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  width: 100%;
+  padding-bottom: 20px;
+}

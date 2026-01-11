@@ -1,8 +1,10 @@
+import { forwardRef } from "react";
 import "./Button.css";
 
-export default function Button({ children, onClick, className = "", ...props }) {
+const Button = forwardRef(({ children, onClick, className = "", ...props }, ref) => {
   return (
     <button 
+      ref={ref}
       onClick={onClick} 
       className={`ui-button ${className}`}
       {...props}
@@ -10,4 +12,8 @@ export default function Button({ children, onClick, className = "", ...props }) 
       {children}
     </button>
   );
-}
+});
+
+Button.displayName = "Button";
+
+export default Button;

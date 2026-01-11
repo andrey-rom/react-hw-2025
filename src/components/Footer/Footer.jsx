@@ -3,6 +3,8 @@ import Logo from "../../assets/Logo.svg";
 import { firstSectionLinks, secondSectionLinks, thirdSectionLinks } from "../../constants/footer";
 import SocialLinks from "./SocialLinks";
 
+import "./Footer.css";
+
 export default function Footer() {
   return (
     <footer className="footer">
@@ -22,9 +24,7 @@ export default function Footer() {
             <ul className="footer-links">
               {firstSectionLinks.map((item) => (
                 <li key={item}>
-                  <a href="#" className="footer-link">
-                    {item}
-                  </a>
+                  <a className="footer-link">{item}</a>
                 </li>
               ))}
             </ul>
@@ -35,7 +35,7 @@ export default function Footer() {
             <ul className="footer-links">
               {secondSectionLinks.map((item) => (
                 <li key={item}>
-                  <a href="#" className="footer-link">
+                  <a href="https://google.com" className="footer-link">
                     {item}
                   </a>
                 </li>
@@ -47,7 +47,7 @@ export default function Footer() {
             <h3 className="footer-title">Flowbase</h3>
             {thirdSectionLinks.map((item) => (
                 <li key={item}>
-                  <a href="#" className="footer-link">
+                  <a href="https://google.com" className="footer-link">
                     {item}
                   </a>
                 </li>
@@ -57,8 +57,7 @@ export default function Footer() {
 
         <div className="footer-bottom">
           <p className="footer-credit">
-            Built by <a href="#">Flowbase</a> · Powered by{" "}
-            <a href="#">Webflow</a>
+            Built by <a>Flowbase</a> · Powered by <a>Webflow</a>
           </p>
 
           <SocialLinks />
