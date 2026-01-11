@@ -10,15 +10,20 @@ const DEFAULT_LIMIT = 6;
 const Menu = () => {
   const [dishes, setDishes] = useState([]);
   const [limit, setLimit] = useState(DEFAULT_LIMIT);
+  const [category, setCategory] = useState("dessert");
 
   useEffect(() => {
-    fetch(API_URL)
+    fetch(API_URL + (category ? `?category=${category}` : ""))
       .then((response) => response.json())
       .then(setDishes);
-  }, []);
+  }, [category]);
 
   const handleLoadMore = () => {
     setLimit(limit + DEFAULT_LIMIT);
+  };
+
+  const handleCategoryChange = (e) => {
+    setCategory(e.target.name);
   };
 
   const { addToCart } = useCart();
@@ -33,9 +38,33 @@ const Menu = () => {
         pickup order. Fast and fresh food.
       </span>
       <div className="menu-buttons">
-        <button className="menu-button menu-button-active">Dessert</button>
-        <button className="menu-button">Dinner</button>
-        <button className="menu-button">Breakfast</button>
+        <button
+          className={`menu-button ${
+            category === "dessert" ? "menu-button-active" : ""
+          }`}
+          onClick={handleCategoryChange}
+          name="dessert"
+        >
+          Dessert
+        </button>
+        <button
+          className={`menu-button ${
+            category === "dinner" ? "menu-button-active" : ""
+          }`}
+          onClick={handleCategoryChange}
+          name="dinner"
+        >
+          Dinner
+        </button>
+        <button
+          className={`menu-button ${
+            category === "breakfast" ? "menu-button-active" : ""
+          }`}
+          onClick={handleCategoryChange}
+          name="breakfast"
+        >
+          Breakfast
+        </button>
       </div>
       <div className="menu-dishes">
         {dishes.slice(0, limit).map((dish) => (
