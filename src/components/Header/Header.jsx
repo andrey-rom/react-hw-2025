@@ -82,11 +82,6 @@ export default function Header() {
               </Link>
             )}
           </nav>
-
-          <button className="button">
-            <img src={Phone} title="Phone number" alt="phone" />
-          </button>
-
           {currentUser && (
             <button
               ref={cartButtonRef}

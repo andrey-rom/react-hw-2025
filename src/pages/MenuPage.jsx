@@ -1,17 +1,11 @@
-import Header from "../components/Header/Header.jsx";
-import Footer from "../components/Footer/Footer.jsx";
+import PageLayout from "../components/PageLayout/PageLayout.jsx";
 import Menu from "../components/Menu/Menu.jsx";
-import { CartProvider } from "../components/CartContext/CartContext.jsx";
 
 const MenuPage = () => {
   return (
-    <CartProvider>
-      <div>
-        <Header />
-        <Menu />
-        <Footer />
-      </div>
-    </CartProvider>
+    <PageLayout showHeader={true} showMainInfo={false} showFooter={true}>
+      <Menu />
+    </PageLayout>
   );
 };
 

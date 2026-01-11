@@ -1,12 +1,11 @@
-import Header from '../components/Header/Header.jsx';
+import PageLayout from '../components/PageLayout/PageLayout.jsx';
 import LoginForm from '../components/LoginForm/LoginForm.jsx';
 
 const LoginPage = () => {
   return (
-    <div>
-      <Header />
+    <PageLayout showHeader={true} showMainInfo={false} showFooter={false}>
       <LoginForm />
-    </div>
+    </PageLayout>
   );
 };
 

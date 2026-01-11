@@ -1,13 +1,10 @@
-import Header from "../components/Header/Header.jsx";
-import Footer from "../components/Footer/Footer.jsx";
+import PageLayout from "../components/PageLayout/PageLayout.jsx";
 
 const OrderPage = () => {
     return (
-        <div>
-            <Header />
+        <PageLayout showHeader={true} showMainInfo={false} showFooter={true}>
             <span>Order Page</span>
-            <Footer />
-        </div>
+        </PageLayout>
     )
 };
 

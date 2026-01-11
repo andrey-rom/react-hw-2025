@@ -1,6 +1,6 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./index.css";
 import "@fontsource/inter";
 import { AuthProvider } from "./components/AuthContext/AuthContext.jsx";
@@ -10,6 +10,7 @@ import LoginPage from "./pages/LoginPage.jsx";
 import RegisterPage from "./pages/RegisterPage.jsx";
 import MenuPage from "./pages/MenuPage.jsx";
 import OrderPage from "./pages/OrderPage.jsx";
+import NotFoundPage from "./pages/NotFoundPage.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
@@ -28,7 +29,7 @@ createRoot(document.getElementById("root")).render(
               </ProtectedRoute>
             }
           />
-          <Route path="*" element={<Navigate to="/" replace />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </AuthProvider>
     </BrowserRouter>
