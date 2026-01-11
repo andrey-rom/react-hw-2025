@@ -8,7 +8,7 @@ const MenuCard = ({ dish, onAddToCart = () => {} }) => {
 
   const handleQuantityChange = (e) => {
     const value = parseInt(e.target.value) || 1;
-    setQuantity(Math.max(1, value));
+    setQuantity(value);
   };
 
   const handleAddToCart = () => {

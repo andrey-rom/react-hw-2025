@@ -1,6 +1,7 @@
 import "./MainInfo.css";
 import Image from "../../assets/Image.png";
 import Star from "../../assets/TrustPilot.svg";
+import Button from "../ui/Button";
 
 export default function MainInfo() {
   return (
@@ -20,7 +21,7 @@ export default function MainInfo() {
             </p>
           </div>
 
-          <button className="cta-button">Place an Order</button>
+          <Button className="cta-button">Place an Order</Button>
 
           <div className="rating-section">
             <div className="rating-text">
