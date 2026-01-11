@@ -1,8 +1,7 @@
 import "./Footer.css";
-import Instagram from "../../assets/instagram.svg";
-import Twitter from "../../assets/twitter.svg";
-import Youtube from "../../assets/youtube.svg";
 import Logo from "../../assets/Logo.svg";
+import { firstSectionLinks, secondSectionLinks, thirdSectionLinks } from "../../constants/footer";
+import SocialLinks from "./SocialLinks";
 
 export default function Footer() {
   return (
@@ -21,7 +20,7 @@ export default function Footer() {
           <div className="footer-section">
             <h3 className="footer-title">Company</h3>
             <ul className="footer-links">
-              {["Home", "Order", "FAQ", "Contact"].map((item) => (
+              {firstSectionLinks.map((item) => (
                 <li key={item}>
                   <a href="#" className="footer-link">
                     {item}
@@ -34,12 +33,7 @@ export default function Footer() {
           <div className="footer-section">
             <h3 className="footer-title">Template</h3>
             <ul className="footer-links">
-              {[
-                "Style Guide",
-                "Changelog",
-                "Licence",
-                "Webflow University",
-              ].map((item) => (
+              {secondSectionLinks.map((item) => (
                 <li key={item}>
                   <a href="#" className="footer-link">
                     {item}
@@ -51,9 +45,13 @@ export default function Footer() {
 
           <div className="footer-section">
             <h3 className="footer-title">Flowbase</h3>
-            <a href="#" className="footer-link">
-              More Cloneables
-            </a>
+            {thirdSectionLinks.map((item) => (
+                <li key={item}>
+                  <a href="#" className="footer-link">
+                    {item}
+                  </a>
+                </li>
+              ))}
           </div>
         </div>
 
@@ -63,15 +61,7 @@ export default function Footer() {
             <a href="#">Webflow</a>
           </p>
 
-          <div className="social-links">
-            {[
-              { icon: Instagram, label: "Instagram" },
-              { icon: Twitter, label: "Twitter" },
-              { icon: Youtube, label: "YouTube" },
-            ].map(({ icon, label }) => (
-              <img src={icon} alt={label} />
-            ))}
-          </div>
+          <SocialLinks />
         </div>
       </div>
     </footer>

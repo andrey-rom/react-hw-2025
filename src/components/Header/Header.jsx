@@ -1,7 +1,6 @@
 import "./Header.css";
 import Logo from "../../assets/Logo.svg";
-import Cart from "../../assets/ShoppingCart.svg";
-import Phone from "../../assets/phone.svg";
+import CartButton from "./CartButton";
 
 export default function Header() {
   return (
@@ -27,14 +26,7 @@ export default function Header() {
             </a>
           </nav>
 
-          <button className="button">
-            <img src={Phone} title="Phone number" alt="phone" />
-          </button>
-
-          <button className="button">
-            <img src={Cart} alt="cart" />
-            <span className="cart-badge">0</span>
-          </button>
+          <CartButton count={0} />
         </div>
       </div>
     </header>

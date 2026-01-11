@@ -1,19 +1,12 @@
-const defaultStyles = {
-  backgroundColor: "#35B8BE",
-  color: "#fff",
-  border: "none",
-  padding: "10px 20px",
-  borderRadius: "5px",
-  cursor: "pointer",
-  fontSize: "16px",
-  "&:hover": {
-    backgroundColor: "#2E9AA3",
-  },
-};
+import "./Button.css";
 
-export default function Button({ children, onClick, styles = {} }) {
+export default function Button({ children, onClick, className = "", ...props }) {
   return (
-    <button onClick={onClick} style={{ ...defaultStyles, ...styles }}>
+    <button 
+      onClick={onClick} 
+      className={`ui-button ${className}`}
+      {...props}
+    >
       {children}
     </button>
   );
