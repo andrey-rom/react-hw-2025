@@ -25,7 +25,6 @@ const Menu = () => {
 
   const isAddMoreButtonVisible = dishes.length > limit;
 
-  console.log(dishes);
   return (
     <div className="menu">
       <span className="menu-title">Browse our menu</span>

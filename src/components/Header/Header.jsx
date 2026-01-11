@@ -1,26 +1,15 @@
-import { useState, useRef } from "react";
+import { useRef } from "react";
 import { useCart } from "../CartContext/CartContext.jsx";
-import CartPopover from "../CartPopover/CartPopover.jsx";
 import Logo from "../../assets/Logo.svg";
-import Cart from "../../assets/ShoppingCart.svg";
-import Phone from "../../assets/phone.svg";
+import CartButton from "./CartButton";
 
 import "./Header.css";
 
 export default function Header() {
   const { cart } = useCart();
-  const [isCartOpen, setIsCartOpen] = useState(false);
   const cartButtonRef = useRef(null);
 
-  const totalItems = cart.reduce((acc, item) => acc + item.count, 0);
-
-  const toggleCart = () => {
-    setIsCartOpen(!isCartOpen);
-  };
-
-  const closeCart = () => {
-    setIsCartOpen(false);
-  };
+  const totalItems = Object.values(cart).reduce((acc, item) => acc + item.count, 0);
 
   return (
     <header className="header">
@@ -37,26 +26,9 @@ export default function Header() {
             <a className="nav-link">Login</a>
           </nav>
 
-          <button className="button">
-            <img src={Phone} title="Phone number" alt="phone" />
-          </button>
-
-          <button
-            ref={cartButtonRef}
-            className="button"
-            onClick={toggleCart}
-            aria-label="Shopping cart"
-          >
-            <img src={Cart} alt="cart" />
-            <span className="cart-badge">{totalItems}</span>
-          </button>
+          <CartButton count={totalItems} />
         </div>
       </div>
-      <CartPopover
-        isOpen={isCartOpen}
-        onClose={closeCart}
-        triggerRef={cartButtonRef}
-      />
     </header>
   );
 }
