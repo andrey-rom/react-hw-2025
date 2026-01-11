@@ -1,21 +1,21 @@
-import { useState } from 'react';
+import { useState, FormEvent } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAppDispatch } from '../../store/hooks';
 import { login, signup } from '../../store/slices/authSlice';
-
 import Input from '../ui/Input';
 import './AuthForm.css';
+import type { AuthFormProps } from '../../types';
 
-const AuthForm = ({ mode = 'login' }) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false);
+const AuthForm = ({ mode = 'login' }: AuthFormProps) => {
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [error, setError] = useState<string>('');
+  const [loading, setLoading] = useState<boolean>(false);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const isLogin = mode === 'login';
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     
     setError('');
@@ -31,10 +31,10 @@ const AuthForm = ({ mode = 'login' }) => {
       if (result.type.endsWith('/fulfilled')) {
         navigate('/menu');
       } else if (result.type.endsWith('/rejected')) {
-        setError(result.payload || 'An error occurred');
+        setError((result.payload as string) || 'An error occurred');
       }
     } catch (err) {
-      setError(err.message || 'An error occurred');
+      setError(err instanceof Error ? err.message : 'An error occurred');
     } finally {
       setLoading(false);
     }

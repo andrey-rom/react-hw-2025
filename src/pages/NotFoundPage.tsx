@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import PageLayout from '../components/PageLayout/PageLayout.jsx';
+import PageLayout from '../components/PageLayout/PageLayout';
 import './NotFoundPage.css';
 
 const NotFoundPage = () => {

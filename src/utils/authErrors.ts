@@ -1,4 +1,9 @@
-export const getAuthErrorMessage = (error) => {
+interface FirebaseAuthError {
+  code?: string;
+  message?: string;
+}
+
+export const getAuthErrorMessage = (error: FirebaseAuthError): string => {
   switch (error.code) {
     case 'auth/email-already-in-use':
       return 'This email is already registered. Please use a different email or log in.';

@@ -1,33 +1,44 @@
-import { useState } from "react";
+import { useState, ChangeEvent } from "react";
 import { useAppDispatch } from "../../store/hooks";
 import { addToCart } from "../../store/slices/cartSlice";
-import MenuCard from "../MenuCard/MenuCard.jsx";
-import useFetch from "../../hooks/useFetch.js";
-
+import MenuCard from "../MenuCard/MenuCard";
+import useFetch from "../../hooks/useFetch";
 import "./Menu.css";
+import type { MenuItem } from "../../types";
 
 const API_URL = "https://65de35f3dccfcd562f5691bb.mockapi.io/api/v1/meals";
 const DEFAULT_LIMIT = 6;
 
 const Menu = () => {
-  const [limit, setLimit] = useState(DEFAULT_LIMIT);
-  const [category, setCategory] = useState("dessert");
+  const [limit, setLimit] = useState<number>(DEFAULT_LIMIT);
+  const [category, setCategory] = useState<string>("dessert");
   const dispatch = useAppDispatch();
 
-  const { data, error, loading } = useFetch(API_URL + (category ? `?category=${category}` : ""));
-  const handleLoadMore = () => {
+  const { data, error, loading } = useFetch<MenuItem[]>(
+    API_URL + (category ? `?category=${category}` : "")
+  );
+
+  const handleLoadMore = (): void => {
     setLimit(limit + DEFAULT_LIMIT);
   };
 
-  const handleCategoryChange = (e) => {
-    setCategory(e.target.name);
+  const handleCategoryChange = (e: ChangeEvent<HTMLButtonElement>): void => {
+    setCategory(e.currentTarget.name);
   };
 
-  const handleAddToCart = (item, count) => {
+  const handleAddToCart = (item: MenuItem, count: number): void => {
     dispatch(addToCart({ item, count }));
   };
 
-  const isAddMoreButtonVisible = data?.length > limit;
+  const isAddMoreButtonVisible = (data?.length ?? 0) > limit;
+
+  if (loading) {
+    return <div className="menu">Loading...</div>;
+  }
+
+  if (error) {
+    return <div className="menu">Error: {error.message}</div>;
+  }
 
   return (
     <div className="menu">
@@ -80,3 +91,4 @@ const Menu = () => {
 };
 
 export default Menu;
+

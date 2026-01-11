@@ -2,19 +2,25 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { store } from "./store/store.js";
-import AuthInitializer from "./components/AuthInitializer/AuthInitializer.jsx";
-import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute.jsx";
-import HomePage from "./pages/HomePage.jsx";
-import LoginPage from "./pages/LoginPage.jsx";
-import RegisterPage from "./pages/RegisterPage.jsx";
-import MenuPage from "./pages/MenuPage.jsx";
-import OrderPage from "./pages/OrderPage.jsx";
-import NotFoundPage from "./pages/NotFoundPage.jsx";
+import { store } from "./store/store";
+import AuthInitializer from "./components/AuthInitializer/AuthInitializer";
+import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import HomePage from "./pages/HomePage";
+import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
+import MenuPage from "./pages/MenuPage";
+import OrderPage from "./pages/OrderPage";
+import NotFoundPage from "./pages/NotFoundPage";
 import "./index.css";
 import "@fontsource/inter";
 
-createRoot(document.getElementById("root")).render(
+const rootElement = document.getElementById("root");
+
+if (!rootElement) {
+  throw new Error("Root element not found");
+}
+
+createRoot(rootElement).render(
   <StrictMode>
     <Provider store={store}>
       <BrowserRouter>
@@ -39,3 +45,4 @@ createRoot(document.getElementById("root")).render(
     </Provider>
   </StrictMode>
 );
+

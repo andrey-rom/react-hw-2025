@@ -5,8 +5,6 @@ import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { logout } from "../../store/slices/authSlice";
 import Logo from "../../assets/Logo.svg";
 import Cart from "../../assets/ShoppingCart.svg";
-import Phone from "../../assets/phone.svg";
-
 import "./Header.css";
 
 export default function Header() {
@@ -18,7 +16,7 @@ export default function Header() {
 
   const totalItems = cart.reduce((acc, item) => acc + item.count, 0);
 
-  const handleLogout = async () => {
+  const handleLogout = async (): Promise<void> => {
     try {
       await signOut(auth);
       dispatch(logout());
@@ -28,7 +26,7 @@ export default function Header() {
     }
   };
 
-  const isActive = (path) => location.pathname === path;
+  const isActive = (path: string): boolean => location.pathname === path;
 
   return (
     <header className="header">
@@ -87,3 +85,4 @@ export default function Header() {
     </header>
   );
 }
+

@@ -1,5 +1,5 @@
-import PageLayout from '../components/PageLayout/PageLayout.jsx';
-import LoginForm from '../components/LoginForm/LoginForm.jsx';
+import PageLayout from '../components/PageLayout/PageLayout';
+import LoginForm from '../components/LoginForm/LoginForm';
 
 const LoginPage = () => {
   return (

@@ -1,5 +1,5 @@
-import PageLayout from '../components/PageLayout/PageLayout.jsx';
-import RegistrationForm from '../components/RegistrationForm/RegistrationForm.jsx';
+import PageLayout from '../components/PageLayout/PageLayout';
+import RegistrationForm from '../components/RegistrationForm/RegistrationForm';
 
 const RegisterPage = () => {
   return (

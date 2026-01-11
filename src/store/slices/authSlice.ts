@@ -1,32 +1,40 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import { 
   signInWithEmailAndPassword, 
-  createUserWithEmailAndPassword 
+  createUserWithEmailAndPassword,
+  User
 } from 'firebase/auth';
 import { auth } from '../../firebase/config';
 import { getAuthErrorMessage } from '../../utils/authErrors';
+import type { AuthState, LoginCredentials } from '../../types';
 
-export const login = createAsyncThunk(
+const initialState: AuthState = {
+  currentUser: null,
+  loading: true,
+  error: null,
+};
+
+export const login = createAsyncThunk<User, LoginCredentials, { rejectValue: string }>(
   'auth/login',
   async ({ email, password }, { rejectWithValue }) => {
     try {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       return userCredential.user;
-    } catch (error) {
-      const errorMessage = getAuthErrorMessage(error);
+    } catch (error: unknown) {
+      const errorMessage = getAuthErrorMessage(error as { code?: string; message?: string });
       return rejectWithValue(errorMessage);
     }
   }
 );
 
-export const signup = createAsyncThunk(
+export const signup = createAsyncThunk<User, LoginCredentials, { rejectValue: string }>(
   'auth/signup',
   async ({ email, password }, { rejectWithValue }) => {
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       return userCredential.user;
-    } catch (error) {
-      const errorMessage = getAuthErrorMessage(error);
+    } catch (error: unknown) {
+      const errorMessage = getAuthErrorMessage(error as { code?: string; message?: string });
       return rejectWithValue(errorMessage);
     }
   }
@@ -34,19 +42,15 @@ export const signup = createAsyncThunk(
 
 const authSlice = createSlice({
   name: 'auth',
-  initialState: {
-    currentUser: null,
-    loading: true,
-    error: null,
-  },
+  initialState,
   reducers: {
-    setCurrentUser: (state, action) => {
+    setCurrentUser: (state, action: PayloadAction<User | null>) => {
       state.currentUser = action.payload;
     },
-    setLoading: (state, action) => {
+    setLoading: (state, action: PayloadAction<boolean>) => {
       state.loading = action.payload;
     },
-    setError: (state, action) => {
+    setError: (state, action: PayloadAction<string | null>) => {
       state.error = action.payload;
     },
     clearError: (state) => {
@@ -70,7 +74,7 @@ const authSlice = createSlice({
       })
       .addCase(login.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload;
+        state.error = action.payload || 'An error occurred';
       })
       .addCase(signup.pending, (state) => {
         state.loading = true;
@@ -83,7 +87,7 @@ const authSlice = createSlice({
       })
       .addCase(signup.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload;
+        state.error = action.payload || 'An error occurred';
       });
   },
 });

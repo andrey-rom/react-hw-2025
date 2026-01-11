@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { removeFromCart, clearCart } from '../store/slices/cartSlice';
-import PageLayout from "../components/PageLayout/PageLayout.jsx";
+import PageLayout from "../components/PageLayout/PageLayout";
 import './OrderPage.css';
 
 const OrderPage = () => {
@@ -56,7 +56,7 @@ const OrderPage = () => {
                     <div className="cart-item-details">
                       <p className="cart-item-name">{item.meal}</p>
                       <p className="cart-item-price">
-                        ${parseFloat(item.price || 0).toFixed(2)} × {item.count}
+                        ${parseFloat(item.price || '0').toFixed(2)} × {item.count}
                       </p>
                     </div>
                   </div>
@@ -87,3 +87,4 @@ const OrderPage = () => {
 };
 
 export default OrderPage;
+

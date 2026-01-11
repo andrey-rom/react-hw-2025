@@ -1,4 +1,4 @@
-import PageLayout from "../components/PageLayout/PageLayout.jsx";
+import PageLayout from "../components/PageLayout/PageLayout";
 import { Link } from "react-router-dom";
 import "./HomePage.css";
 
@@ -17,3 +17,4 @@ const HomePage = () => {
 };
 
 export default HomePage;
+

@@ -1,10 +1,14 @@
-import { useEffect } from 'react';
+import { useEffect, ReactNode } from 'react';
 import { useAppDispatch } from '../../store/hooks';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../../firebase/config';
 import { setCurrentUser, setLoading } from '../../store/slices/authSlice';
 
-const AuthInitializer = ({ children }) => {
+interface AuthInitializerProps {
+  children: ReactNode;
+}
+
+const AuthInitializer = ({ children }: AuthInitializerProps) => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -16,7 +20,7 @@ const AuthInitializer = ({ children }) => {
     return () => unsubscribe();
   }, [dispatch]);
 
-  return children;
+  return <>{children}</>;
 };
 
 export default AuthInitializer;

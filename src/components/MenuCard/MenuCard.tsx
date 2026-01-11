@@ -1,17 +1,23 @@
-import { useState } from "react";
+import { useState, ChangeEvent } from "react";
 import "./MenuCard.css";
+import type { MenuItem } from "../../types";
 
-const MenuCard = ({ dish, onAddToCart = () => {} }) => {
-  const [quantity, setQuantity] = useState(1);
+interface MenuCardProps {
+  dish: MenuItem;
+  onAddToCart?: (item: MenuItem, count: number) => void;
+}
+
+const MenuCard = ({ dish, onAddToCart = () => {} }: MenuCardProps) => {
+  const [quantity, setQuantity] = useState<number>(1);
 
   const { img, meal, price } = dish;
 
-  const handleQuantityChange = (e) => {
+  const handleQuantityChange = (e: ChangeEvent<HTMLInputElement>): void => {
     const value = parseInt(e.target.value) || 1;
     setQuantity(Math.max(1, value));
   };
 
-  const handleAddToCart = () => {
+  const handleAddToCart = (): void => {
     if (onAddToCart) {
       onAddToCart(dish, quantity);
       setQuantity(1);
@@ -47,3 +53,4 @@ const MenuCard = ({ dish, onAddToCart = () => {} }) => {
 };
 
 export default MenuCard;
+

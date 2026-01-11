@@ -1,8 +1,17 @@
 import React from "react";
 import "./StaticList.css";
 
-class StaticList extends React.Component {
-  constructor(props) {
+interface Todo {
+  id: number;
+  text: string;
+}
+
+interface StaticListState {
+  todos: Todo[];
+}
+
+class StaticList extends React.Component<{}, StaticListState> {
+  constructor(props: {}) {
     super(props);
     this.state = {
       todos: [
@@ -32,3 +41,4 @@ class StaticList extends React.Component {
 }
 
 export default StaticList;
+

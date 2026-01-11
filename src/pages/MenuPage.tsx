@@ -1,5 +1,5 @@
-import PageLayout from "../components/PageLayout/PageLayout.jsx";
-import Menu from "../components/Menu/Menu.jsx";
+import PageLayout from "../components/PageLayout/PageLayout";
+import Menu from "../components/Menu/Menu";
 
 const MenuPage = () => {
   return (

@@ -2,7 +2,6 @@ import Instagram from "../../assets/instagram.svg";
 import Twitter from "../../assets/twitter.svg";
 import Youtube from "../../assets/youtube.svg";
 import Logo from "../../assets/Logo.svg";
-
 import "./Footer.css";
 
 export default function Footer() {
@@ -65,7 +64,7 @@ export default function Footer() {
               { icon: Twitter, label: "Twitter" },
               { icon: Youtube, label: "YouTube" },
             ].map(({ icon, label }) => (
-              <img src={icon} alt={label} />
+              <img key={label} src={icon} alt={label} />
             ))}
           </div>
         </div>
@@ -73,3 +72,4 @@ export default function Footer() {
     </footer>
   );
 }
+
