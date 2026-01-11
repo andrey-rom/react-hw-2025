@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useCart } from "../CartContext/CartContext.jsx";
 import MenuCard from "../MenuCard/MenuCard.jsx";
+import useFetch from "../../hooks/useFetch.js";
 
 import "./Menu.css";
 
@@ -8,16 +9,10 @@ const API_URL = "https://65de35f3dccfcd562f5691bb.mockapi.io/api/v1/meals";
 const DEFAULT_LIMIT = 6;
 
 const Menu = () => {
-  const [dishes, setDishes] = useState([]);
   const [limit, setLimit] = useState(DEFAULT_LIMIT);
   const [category, setCategory] = useState("dessert");
 
-  useEffect(() => {
-    fetch(API_URL + (category ? `?category=${category}` : ""))
-      .then((response) => response.json())
-      .then(setDishes);
-  }, [category]);
-
+  const { data, error, loading } = useFetch(API_URL + (category ? `?category=${category}` : ""));
   const handleLoadMore = () => {
     setLimit(limit + DEFAULT_LIMIT);
   };
@@ -28,7 +23,7 @@ const Menu = () => {
 
   const { addToCart } = useCart();
 
-  const isAddMoreButtonVisible = dishes.length > limit;
+  const isAddMoreButtonVisible = data?.length > limit;
 
   return (
     <div className="menu">
@@ -67,7 +62,7 @@ const Menu = () => {
         </button>
       </div>
       <div className="menu-dishes">
-        {dishes.slice(0, limit).map((dish) => (
+        {data?.slice(0, limit).map((dish) => (
           <MenuCard key={dish.id} dish={dish} onAddToCart={addToCart} />
         ))}
       </div>
