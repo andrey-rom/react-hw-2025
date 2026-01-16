@@ -68,6 +68,22 @@
   color: #111827;
 }
 
+.nav-link-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.875rem;
+  text-decoration: none;
+  font-weight: 500;
+  color: #111827;
+  transition: color 0.2s;
+}
+
+.nav-link-button:hover {
+  color: #111827;
+}
+
 .header-actions {
   display: flex;
   align-items: center;
@@ -123,6 +139,18 @@
 
 .button:hover {
   background-color: #0d9488;
+}
+
+.cart {
+  width: 24px;
+  height: 24px;
+  background-color: #14b8a6;
+  border-radius: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  position: relative;
 }
 
 .cart-badge {

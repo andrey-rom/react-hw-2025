@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { useAuth } from '../AuthContext/AuthContext';
+import { useAppDispatch } from '../../store/hooks';
+import { login, signup } from '../../store/slices/authSlice';
+
 import Input from '../ui/Input';
 import './AuthForm.css';
 
@@ -9,27 +11,30 @@ const AuthForm = ({ mode = 'login' }) => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const { login, signup } = useAuth();
   const navigate = useNavigate();
-
+  const dispatch = useAppDispatch();
   const isLogin = mode === 'login';
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     
+    setError('');
+    setLoading(true);
+    
     try {
-      setError('');
-      setLoading(true);
+      const result = await dispatch(
+        isLogin 
+          ? login({ email, password })
+          : signup({ email, password })
+      );
       
-      if (isLogin) {
-        await login(email, password);
-      } else {
-        await signup(email, password);
+      if (result.type.endsWith('/fulfilled')) {
+        navigate('/menu');
+      } else if (result.type.endsWith('/rejected')) {
+        setError(result.payload || 'An error occurred');
       }
-      
-      navigate('/menu');
     } catch (err) {
-      setError(err.message);
+      setError(err.message || 'An error occurred');
     } finally {
       setLoading(false);
     }

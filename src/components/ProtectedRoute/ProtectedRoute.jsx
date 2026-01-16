@@ -1,8 +1,8 @@
 import { Navigate } from 'react-router-dom';
-import { useAuth } from '../AuthContext/AuthContext';
+import { useAppSelector } from '../../store/hooks';
 
 const ProtectedRoute = ({ children }) => {
-  const { currentUser } = useAuth();
+  const { currentUser } = useAppSelector((state) => state.auth);
 
   if (!currentUser) {
     return <Navigate to="/login" replace />;
