@@ -2,10 +2,12 @@
   padding: 2rem;
   max-width: 1200px;
   margin: 0 auto;
+  background-color: var(--bg-color);
 }
 
 .order-page-title {
   margin-bottom: 2rem;
+  color: var(--text-color);
 }
 
 .order-empty-container {
@@ -15,13 +17,13 @@
 
 .order-empty-text {
   font-size: 1.2rem;
-  color: #6b7280;
+  color: var(--secondary-text);
 }
 
 .browse-menu-button {
   margin-top: 1rem;
   padding: 12px 24px;
-  background-color: #14b8a6;
+  background-color: var(--primary-color);
   color: #ffffff;
   border: none;
   border-radius: 4px;
@@ -31,7 +33,7 @@
 }
 
 .browse-menu-button:hover {
-  background-color: #0d9488;
+  background-color: var(--primary-hover);
 }
 
 .cart-header {
@@ -39,6 +41,11 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1.5rem;
+}
+
+.cart-header-title {
+  color: var(--text-color);
+  margin: 0;
 }
 
 .clear-cart-button {
@@ -67,9 +74,9 @@
   align-items: center;
   justify-content: space-between;
   padding: 1rem;
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--cart-item-border);
   border-radius: 8px;
-  background-color: #ffffff;
+  background-color: var(--cart-item-bg);
 }
 
 .cart-item-content {
@@ -94,10 +101,11 @@
 .cart-item-name {
   font-weight: 600;
   margin-bottom: 0.5rem;
+  color: var(--text-color);
 }
 
 .cart-item-price {
-  color: #6b7280;
+  color: var(--secondary-text);
 }
 
 .remove-item-button {
@@ -117,9 +125,9 @@
 
 .order-summary {
   padding: 1.5rem;
-  background-color: #f9fafb;
+  background-color: var(--summary-bg);
   border-radius: 8px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid var(--border-color);
 }
 
 .order-summary-header {
@@ -132,12 +140,13 @@
 .order-summary-total {
   font-size: 1.2rem;
   font-weight: 600;
+  color: var(--text-color);
 }
 
 .checkout-button {
   width: 100%;
   padding: 12px;
-  background-color: #14b8a6;
+  background-color: var(--primary-color);
   color: #ffffff;
   border: none;
   border-radius: 4px;
@@ -148,6 +157,6 @@
 }
 
 .checkout-button:hover {
-  background-color: #0d9488;
+  background-color: var(--primary-hover);
 }
 

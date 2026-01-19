@@ -3,6 +3,7 @@ import { signOut } from "firebase/auth";
 import { auth } from "../../firebase/config";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { logout } from "../../store/slices/authSlice";
+import { useTheme } from "../../contexts/ThemeContext";
 import Logo from "../../assets/Logo.svg";
 import Cart from "../../assets/ShoppingCart.svg";
 import "./Header.css";
@@ -13,6 +14,7 @@ export default function Header() {
   const dispatch = useAppDispatch();
   const { currentUser } = useAppSelector((state) => state.auth);
   const cart = useAppSelector((state) => state.cart.items);
+  const { theme, toggleTheme } = useTheme();
 
   const totalItems = cart.reduce((acc, item) => acc + item.count, 0);
 
@@ -80,6 +82,9 @@ export default function Header() {
               {totalItems > 0 && <span className="cart-badge">{totalItems}</span>}
             </Link>
           )}
+          <button onClick={toggleTheme} className="theme-toggle">
+            {theme === "light" ? "🌙" : "☀️"}
+          </button>
         </div>
       </div>
     </header>
