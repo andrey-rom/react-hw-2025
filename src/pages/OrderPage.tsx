@@ -31,7 +31,7 @@ const OrderPage = () => {
         ) : (
           <div>
             <div className="cart-header">
-              <h2>Cart Items</h2>
+              <h2 className="cart-header-title">Cart Items</h2>
               {cart.length > 0 && (
                 <button
                   onClick={() => dispatch(clearCart())}

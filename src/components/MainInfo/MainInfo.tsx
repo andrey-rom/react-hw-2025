@@ -29,7 +29,7 @@ export default function MainInfo() {
             </div>
             <p className="rating-description">
               <p className="rating-value">4.8 out of 5</p>
-              <p> based on 2000+ reviews</p>
+              <p className="rating-reviews"> based on 2000+ reviews</p>
             </p>
           </div>
         </div>

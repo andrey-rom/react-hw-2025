@@ -4,18 +4,20 @@
   flex-direction: column;
   align-items: center;
   font-weight: 400;
+  background-color: var(--bg-color);
+  color: var(--text-color);
 }
 
 .menu-title {
   font-size: 50px;
   font-weight: 400;
-  color: #35b8be;
+  color: var(--menu-primary);
   padding-bottom: 26px;
 }
 
 .menu-description {
   font-size: 16px;
-  color: #546285;
+  color: var(--menu-text);
   padding-bottom: 50px;
 }
 
@@ -31,19 +33,20 @@
   border-radius: 6px;
   padding: 16px 40px;
   font-size: 16px;
-  background-color: #ffffff;
-  border: 1px solid #61728333;
+  background-color: var(--menu-button-bg);
+  border: 1px solid var(--menu-button-border);
   cursor: pointer;
   transition: background-color 0.2s;
+  color: var(--text-color);
 }
 
 .menu-button:hover {
-  background-color: #35b8be;
+  background-color: var(--menu-primary);
   color: #ffffff;
 }
 
 .menu-button-active {
-  background-color: #35b8be;
+  background-color: var(--menu-primary);
   color: #ffffff;
 }
 

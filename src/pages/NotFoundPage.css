@@ -4,6 +4,7 @@
   justify-content: center;
   min-height: 60vh;
   padding: 40px 20px;
+  background-color: var(--bg-color);
 }
 
 .not-found-content {
@@ -14,7 +15,7 @@
 .not-found-title {
   font-size: 120px;
   font-weight: 700;
-  color: #14b8a6;
+  color: var(--primary-color);
   margin: 0;
   line-height: 1;
 }
@@ -22,13 +23,13 @@
 .not-found-subtitle {
   font-size: 32px;
   font-weight: 600;
-  color: #111827;
+  color: var(--text-color);
   margin: 20px 0;
 }
 
 .not-found-description {
   font-size: 18px;
-  color: #6b7280;
+  color: var(--secondary-text);
   margin: 0 0 40px 0;
   line-height: 1.6;
 }
@@ -36,7 +37,7 @@
 .not-found-link {
   display: inline-block;
   padding: 12px 24px;
-  background-color: #14b8a6;
+  background-color: var(--primary-color);
   color: #ffffff;
   text-decoration: none;
   border-radius: 4px;
@@ -46,7 +47,7 @@
 }
 
 .not-found-link:hover {
-  background-color: #0d9488;
+  background-color: var(--primary-hover);
 }
 
 @media (max-width: 768px) {

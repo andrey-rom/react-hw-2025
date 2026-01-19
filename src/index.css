@@ -1,4 +1,67 @@
+:root {
+  --bg-color: #ffffff;
+  --text-color: #111827;
+  --border-color: #f3f4f6;
+  --hover-bg: #f9fafb;
+  --primary-color: #14b8a6;
+  --primary-hover: #0d9488;
+  --secondary-text: #6b7280;
+  --card-bg: #ffffff;
+  --input-bg: #ffffff;
+  --input-border: #f3f4f6;
+  --input-hover-border: #e5e7eb;
+  --error-bg: #fef2f2;
+  --error-border: #fecaca;
+  --error-text: #dc2626;
+  --disabled-bg: #d1d5db;
+  --hero-bg: linear-gradient(to bottom right, #f8fafc, #ffffff, #f1f5f9);
+  --summary-bg: #f9fafb;
+  --cart-item-bg: #ffffff;
+  --cart-item-border: #e5e7eb;
+  --menu-primary: #35b8be;
+  --menu-text: #546285;
+  --menu-button-bg: #ffffff;
+  --menu-button-border: #61728333;
+  --menu-card-border: #e0e7ff;
+  --menu-card-text: #1a1a1a;
+  --quantity-hover: #f5f5f5;
+  --quantity-active: #e0e7ff;
+}
+
+.dark {
+  --bg-color: #1f2937;
+  --text-color: #f9fafb;
+  --border-color: #374151;
+  --hover-bg: #374151;
+  --primary-color: #14b8a6;
+  --primary-hover: #0d9488;
+  --secondary-text: #9ca3af;
+  --card-bg: #111827;
+  --input-bg: #1f2937;
+  --input-border: #374151;
+  --input-hover-border: #4b5563;
+  --error-bg: #7f1d1d;
+  --error-border: #991b1b;
+  --error-text: #fca5a5;
+  --disabled-bg: #4b5563;
+  --hero-bg: linear-gradient(to bottom right, #111827, #1f2937, #0f172a);
+  --summary-bg: #111827;
+  --cart-item-bg: #1f2937;
+  --cart-item-border: #374151;
+  --menu-primary: #14b8a6;
+  --menu-text: #9ca3af;
+  --menu-button-bg: #1f2937;
+  --menu-button-border: #4b5563;
+  --menu-card-border: #374151;
+  --menu-card-text: #f9fafb;
+  --quantity-hover: #374151;
+  --quantity-active: #4b5563;
+}
+
 body {
   font-family: "Inter", sans-serif;
   font-weight: 400;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
 }

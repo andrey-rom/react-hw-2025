@@ -1,5 +1,5 @@
 .hero {
-  background: linear-gradient(to bottom right, #f8fafc, #ffffff, #f1f5f9);
+  background: var(--hero-bg);
 }
 
 .hero-container {
@@ -27,22 +27,22 @@
   font-size: 60px;
   line-height: 1.2;
   font-weight: 400;
-  color: #111827;
+  color: var(--text-color);
 }
 
 .hero-title .highlight {
-  color: #14b8a6;
+  color: var(--primary-color);
 }
 
 .hero-description {
   font-size: 1rem;
   line-height: 1.6;
-  color: #6b7280;
+  color: var(--secondary-text);
   max-width: 28rem;
 }
 
 .cta-button {
-  background-color: #14b8a6;
+  background-color: var(--primary-color);
   color: #ffffff;
   padding: 0.75rem 2rem;
   border: none;
@@ -57,7 +57,7 @@
 }
 
 .cta-button:hover {
-  background-color: #0d9488;
+  background-color: var(--primary-hover);
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
@@ -91,12 +91,12 @@
 .rating-title {
   font-weight: 600;
   font-size: 0.875rem;
-  color: #111827;
+  color: var(--text-color);
 }
 
 .rating-value {
   font-size: 0.875rem;
-  color: #14b8a6;
+  color: var(--primary-color);
 
   margin-right: 5px;
 }
@@ -104,6 +104,10 @@
 .rating-description {
   font-size: 0.875rem;
   display: flex;
+}
+
+.rating-reviews {
+  color: var(--secondary-text);
 }
 
 .hero-image-wrapper {
