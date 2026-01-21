@@ -3,6 +3,7 @@ import { useAppDispatch } from "../../store/hooks";
 import { addToCart } from "../../store/slices/cartSlice";
 import MenuCard from "../MenuCard/MenuCard";
 import useFetch from "../../hooks/useFetch";
+import { useLanguage } from "../../contexts/LanguageContext";
 import "./Menu.css";
 import type { MenuItem } from "../../types";
 
@@ -13,6 +14,7 @@ const Menu = () => {
   const [limit, setLimit] = useState<number>(DEFAULT_LIMIT);
   const [category, setCategory] = useState<string>("dessert");
   const dispatch = useAppDispatch();
+  const { t } = useLanguage();
 
   const { data, error, loading } = useFetch<MenuItem[]>(
     API_URL + (category ? `?category=${category}` : "")
@@ -33,19 +35,18 @@ const Menu = () => {
   const isAddMoreButtonVisible = (data?.length ?? 0) > limit;
 
   if (loading) {
-    return <div className="menu">Loading...</div>;
+    return <div className="menu">{t("menu.loading")}</div>;
   }
 
   if (error) {
-    return <div className="menu">Error: {error.message}</div>;
+    return <div className="menu">{t("menu.error")} {error.message}</div>;
   }
 
   return (
     <div className="menu">
-      <span className="menu-title">Browse our menu</span>
+      <span className="menu-title">{t("menu.title")}</span>
       <span className="menu-description">
-        Use our menu to place an order online, or phone our store to place a
-        pickup order. Fast and fresh food.
+        {t("menu.description")}
       </span>
       <div className="menu-buttons">
         <button
@@ -55,7 +56,7 @@ const Menu = () => {
           onClick={handleCategoryChange}
           name="dessert"
         >
-          Dessert
+          {t("menu.dessert")}
         </button>
         <button
           className={`menu-button ${
@@ -64,7 +65,7 @@ const Menu = () => {
           onClick={handleCategoryChange}
           name="dinner"
         >
-          Dinner
+          {t("menu.dinner")}
         </button>
         <button
           className={`menu-button ${
@@ -73,7 +74,7 @@ const Menu = () => {
           onClick={handleCategoryChange}
           name="breakfast"
         >
-          Breakfast
+          {t("menu.breakfast")}
         </button>
       </div>
       <div className="menu-dishes">
@@ -83,7 +84,7 @@ const Menu = () => {
       </div>
       {isAddMoreButtonVisible && (
         <button className="menu-button" onClick={handleLoadMore}>
-          Load More
+          {t("menu.loadMore")}
         </button>
       )}
     </div>

@@ -1,4 +1,5 @@
 import { useState, ChangeEvent } from "react";
+import { useLanguage } from "../../contexts/LanguageContext";
 import "./MenuCard.css";
 import type { MenuItem } from "../../types";
 
@@ -9,6 +10,7 @@ interface MenuCardProps {
 
 const MenuCard = ({ dish, onAddToCart = () => {} }: MenuCardProps) => {
   const [quantity, setQuantity] = useState<number>(1);
+  const { t } = useLanguage();
 
   const { img, meal, price } = dish;
 
@@ -44,7 +46,7 @@ const MenuCard = ({ dish, onAddToCart = () => {} }: MenuCardProps) => {
             />
           </div>
           <button className="add-to-cart-button" onClick={handleAddToCart}>
-            Add to card
+            {t("menuCard.addToCard")}
           </button>
         </div>
       </div>

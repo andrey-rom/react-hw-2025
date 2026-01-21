@@ -1,35 +1,45 @@
 import "./MainInfo.css";
 import Image from "../../assets/Image.png";
 import Star from "../../assets/TrustPilot.svg";
+import { useLanguage } from "../../contexts/LanguageContext";
 
 export default function MainInfo() {
+  const { t } = useLanguage();
+  
   return (
     <section className="hero">
       <div className="hero-container">
-        {/* Left content */}
         <div className="hero-content">
           <div className="hero-text">
             <h1 className="hero-title">
-              Beautiful food & <span className="highlight">takeaway,</span>{" "}
-              delivered to your door.
+              {(() => {
+                const title = t("mainInfo.title");
+                const highlight = t("mainInfo.highlight");
+                const parts = title.split(highlight);
+                return (
+                  <>
+                    {parts[0]}
+                    <span className="highlight">{highlight}</span>{" "}
+                    {parts[1]}
+                  </>
+                );
+              })()}
             </h1>
             <p className="hero-description">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s.
+              {t("mainInfo.description")}
             </p>
           </div>
 
-          <button className="cta-button">Place an Order</button>
+          <button className="cta-button">{t("mainInfo.placeOrder")}</button>
 
           <div className="rating-section">
             <div className="rating-text">
               <img src={Star} alt="Star" />
-              <p className="rating-title">Trustpilot</p>
+              <p className="rating-title">{t("mainInfo.trustpilot")}</p>
             </div>
             <p className="rating-description">
-              <p className="rating-value">4.8 out of 5</p>
-              <p className="rating-reviews"> based on 2000+ reviews</p>
+              <p className="rating-value">{t("mainInfo.rating")}</p>
+              <p className="rating-reviews"> {t("mainInfo.reviews")}</p>
             </p>
           </div>
         </div>

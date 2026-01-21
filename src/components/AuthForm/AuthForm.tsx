@@ -2,6 +2,7 @@ import { useState, FormEvent } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAppDispatch } from '../../store/hooks';
 import { login, signup } from '../../store/slices/authSlice';
+import { useLanguage } from '../../contexts/LanguageContext';
 import Input from '../ui/Input';
 import './AuthForm.css';
 import type { AuthFormProps } from '../../types';
@@ -13,6 +14,7 @@ const AuthForm = ({ mode = 'login' }: AuthFormProps) => {
   const [loading, setLoading] = useState<boolean>(false);
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const { t } = useLanguage();
   const isLogin = mode === 'login';
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
@@ -31,24 +33,24 @@ const AuthForm = ({ mode = 'login' }: AuthFormProps) => {
       if (result.type.endsWith('/fulfilled')) {
         navigate('/menu');
       } else if (result.type.endsWith('/rejected')) {
-        setError((result.payload as string) || 'An error occurred');
+        setError((result.payload as string) || t("auth.error"));
       }
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'An error occurred');
+      setError(err instanceof Error ? err.message : t("auth.error"));
     } finally {
       setLoading(false);
     }
   };
 
-  const title = isLogin ? 'Login' : 'Sign Up';
+  const title = isLogin ? t("auth.login") : t("auth.signUp");
   const buttonText = loading 
-    ? (isLogin ? 'Logging in...' : 'Creating account...')
-    : (isLogin ? 'Login' : 'Sign Up');
+    ? (isLogin ? t("auth.loggingIn") : t("auth.creatingAccount"))
+    : (isLogin ? t("auth.login") : t("auth.signUp"));
   const linkText = isLogin 
-    ? "Don't have an account? " 
-    : 'Already have an account? ';
+    ? t("auth.noAccount") + " "
+    : t("auth.haveAccount") + " ";
   const linkTo = isLogin ? '/register' : '/login';
-  const linkLabel = isLogin ? 'Sign up' : 'Log in';
+  const linkLabel = isLogin ? t("auth.signUpLink") : t("auth.loginLink");
 
   return (
     <div className="auth-page">
@@ -57,25 +59,25 @@ const AuthForm = ({ mode = 'login' }: AuthFormProps) => {
         {error && <div className="auth-error">{error}</div>}
         <form onSubmit={handleSubmit} className="auth-form">
           <div className="auth-field">
-            <label htmlFor="email">Email</label>
+            <label htmlFor="email">{t("auth.email")}</label>
             <Input
               id="email"
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              placeholder="Enter your email"
+              placeholder={t("auth.enterEmail")}
             />
           </div>
           <div className="auth-field">
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password">{t("auth.password")}</label>
             <Input
               id="password"
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              placeholder="Enter your password"
+              placeholder={t("auth.enterPassword")}
               minLength={isLogin ? undefined : 6}
             />
           </div>
