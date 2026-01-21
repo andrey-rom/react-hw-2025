@@ -4,6 +4,7 @@ import { auth } from "../../firebase/config";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { logout } from "../../store/slices/authSlice";
 import { useTheme } from "../../contexts/ThemeContext";
+import { useLanguage } from "../../contexts/LanguageContext";
 import Logo from "../../assets/Logo.svg";
 import Cart from "../../assets/ShoppingCart.svg";
 import "./Header.css";
@@ -15,6 +16,7 @@ export default function Header() {
   const { currentUser } = useAppSelector((state) => state.auth);
   const cart = useAppSelector((state) => state.cart.items);
   const { theme, toggleTheme } = useTheme();
+  const { language, setLanguage, t } = useLanguage();
 
   const totalItems = cart.reduce((acc, item) => acc + item.count, 0);
 
@@ -45,30 +47,30 @@ export default function Header() {
               to="/" 
               className={`nav-link ${isActive("/") ? "active" : ""}`}
             >
-              Home
+              {t("header.home")}
             </Link>
             {currentUser && (
               <Link 
                 to="/menu" 
                 className={`nav-link ${isActive("/menu") ? "active" : ""}`}
               >
-                Menu
+                {t("header.menu")}
               </Link>
             )}
-            <a className="nav-link">Company</a>
+            <a className="nav-link">{t("header.company")}</a>
             {currentUser ? (
               <button 
                 onClick={handleLogout}
                 className="nav-link-button"
               >
-                Logout
+                {t("header.logout")}
               </button>
             ) : (
               <Link 
                 to="/login" 
                 className={`nav-link ${isActive("/login") ? "active" : ""}`}
               >
-                Login
+                {t("header.login")}
               </Link>
             )}
           </nav>
@@ -82,6 +84,15 @@ export default function Header() {
               {totalItems > 0 && <span className="cart-badge">{totalItems}</span>}
             </Link>
           )}
+          <select
+            value={language}
+            onChange={(e) => setLanguage(e.target.value as "en" | "es" | "ru")}
+            className="language-select"
+          >
+            <option value="en">EN</option>
+            <option value="es">ES</option>
+            <option value="ru">RU</option>
+          </select>
           <button onClick={toggleTheme} className="theme-toggle">
             {theme === "light" ? "🌙" : "☀️"}
           </button>

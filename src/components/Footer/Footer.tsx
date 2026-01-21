@@ -2,9 +2,12 @@ import Instagram from "../../assets/instagram.svg";
 import Twitter from "../../assets/twitter.svg";
 import Youtube from "../../assets/youtube.svg";
 import Logo from "../../assets/Logo.svg";
+import { useLanguage } from "../../contexts/LanguageContext";
 import "./Footer.css";
 
 export default function Footer() {
+  const { t } = useLanguage();
+  
   return (
     <footer className="footer">
       <div className="footer-container">
@@ -14,14 +17,14 @@ export default function Footer() {
               <img src={Logo} alt="logo" />
             </div>
             <p className="footer-description">
-              Takeaway & Delivery template for small - medium businesses.
+              {t("footer.description")}
             </p>
           </div>
 
           <div className="footer-section">
-            <h3 className="footer-title">Company</h3>
+            <h3 className="footer-title">{t("footer.company")}</h3>
             <ul className="footer-links">
-              {["Home", "Order", "FAQ", "Contact"].map((item) => (
+              {[t("footer.home"), t("footer.order"), t("footer.faq"), t("footer.contact")].map((item) => (
                 <li key={item}>
                   <a className="footer-link">{item}</a>
                 </li>
@@ -30,13 +33,13 @@ export default function Footer() {
           </div>
 
           <div className="footer-section">
-            <h3 className="footer-title">Template</h3>
+            <h3 className="footer-title">{t("footer.template")}</h3>
             <ul className="footer-links">
               {[
-                "Style Guide",
-                "Changelog",
-                "Licence",
-                "Webflow University",
+                t("footer.styleGuide"),
+                t("footer.changelog"),
+                t("footer.licence"),
+                t("footer.webflowUniversity"),
               ].map((item) => (
                 <li key={item}>
                   <a href="https://google.com" className="footer-link">
@@ -48,14 +51,14 @@ export default function Footer() {
           </div>
 
           <div className="footer-section">
-            <h3 className="footer-title">Flowbase</h3>
-            <a className="footer-link">More Cloneables</a>
+            <h3 className="footer-title">{t("footer.flowbase")}</h3>
+            <a className="footer-link">{t("footer.moreCloneables")}</a>
           </div>
         </div>
 
         <div className="footer-bottom">
           <p className="footer-credit">
-            Built by <a>Flowbase</a> · Powered by <a>Webflow</a>
+            {t("footer.builtBy")} <a>Flowbase</a> · {t("footer.poweredBy")} <a>Webflow</a>
           </p>
 
           <div className="social-links">

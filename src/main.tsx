@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { store } from "./store/store";
 import { ThemeProvider } from "./contexts/ThemeContext";
+import { LanguageProvider } from "./contexts/LanguageContext";
 import AuthInitializer from "./components/AuthInitializer/AuthInitializer";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import HomePage from "./pages/HomePage";
@@ -24,27 +25,29 @@ if (!rootElement) {
 createRoot(rootElement).render(
   <StrictMode>
     <Provider store={store}>
-      <ThemeProvider>
-        <BrowserRouter>
-          <AuthInitializer>
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/login" element={<LoginPage />} />
-              <Route path="/register" element={<RegisterPage />} />
-              <Route path="/menu" element={<MenuPage />} />
-              <Route
-                path="/order"
-                element={
-                  <ProtectedRoute>
-                    <OrderPage />
-                  </ProtectedRoute>
-                }
-              />
-              <Route path="*" element={<NotFoundPage />} />
-            </Routes>
-          </AuthInitializer>
-        </BrowserRouter>
-      </ThemeProvider>
+      <LanguageProvider>
+        <ThemeProvider>
+          <BrowserRouter>
+            <AuthInitializer>
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/register" element={<RegisterPage />} />
+                <Route path="/menu" element={<MenuPage />} />
+                <Route
+                  path="/order"
+                  element={
+                    <ProtectedRoute>
+                      <OrderPage />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route path="*" element={<NotFoundPage />} />
+              </Routes>
+            </AuthInitializer>
+          </BrowserRouter>
+        </ThemeProvider>
+      </LanguageProvider>
     </Provider>
   </StrictMode>
 );
