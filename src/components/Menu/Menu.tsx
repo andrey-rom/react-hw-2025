@@ -1,4 +1,4 @@
-import { useState, ChangeEvent } from "react";
+import { useState, MouseEvent } from "react";
 import { useAppDispatch } from "../../store/hooks";
 import { addToCart } from "../../store/slices/cartSlice";
 import MenuCard from "../MenuCard/MenuCard";
@@ -24,7 +24,7 @@ const Menu = () => {
     setLimit(limit + DEFAULT_LIMIT);
   };
 
-  const handleCategoryChange = (e: ChangeEvent<HTMLButtonElement>): void => {
+  const handleCategoryChange = (e: MouseEvent<HTMLButtonElement>): void => {
     setCategory(e.currentTarget.name);
   };
 
